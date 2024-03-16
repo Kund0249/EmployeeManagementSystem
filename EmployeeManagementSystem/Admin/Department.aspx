@@ -9,6 +9,7 @@
 <head runat="server">
     <title>Employee Management : Department</title>
     <link href="../Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/css/Site.css" rel="stylesheet" />
     <style>
         /*  .btnStyle{
             color:white;
@@ -54,14 +55,18 @@
                         <tr>
                             <td>
                                 <asp:Button runat="server" ID="btnReset" Text="Reset Form"
-                                    CssClass="btn btn-light" />
+                                    CssClass="btn btn-light btn-water" />
                             </td>
                             <td>
                                 <asp:Button runat="server" ID="btnSubmit" Text="Submit"
-                                    CssClass="btn btn-success" />
+                                    CssClass="btn btn-success" OnClick="btnSubmit_Click"/>
                             </td>
                         </tr>
                     </table>
+
+                    <div class="mt-3">
+                        <asp:Label runat="server" ID="lblMessage"></asp:Label>
+                    </div>
                 </div>
 
             </div>

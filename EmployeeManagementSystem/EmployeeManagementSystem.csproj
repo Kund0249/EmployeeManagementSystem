@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Admin\Department.aspx" />
     <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\Site.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
