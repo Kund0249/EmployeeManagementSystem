@@ -1,0 +1,19 @@
+﻿Create Procedure spAddDepartment
+@departmentCode varchar(6),
+@departmentName varchar(50)
+AS
+BEGIN
+
+  IF Not EXISTS(select 1 from TDAPETMENT where DepartmentCode = @departmentCode or DepartmentName = @departmentName)
+   BEGIN
+     Insert into TDAPETMENT (DepartmentCode,DepartmentName) Values(@departmentCode,@departmentName)
+	 select 'S001' as StatusCode
+	 return
+   END
+ ELSE
+   BEGIN
+      select 'RE01' as StatusCode
+	 return
+   END
+
+END
