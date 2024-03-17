@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Department.aspx" />
+    <Content Include="Admin\Employee.aspx" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Procedure\spAddDepartment.txt" />
@@ -80,6 +81,13 @@
     </Compile>
     <Compile Include="Admin\Department.aspx.designer.cs">
       <DependentUpon>Department.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Employee.aspx.cs">
+      <DependentUpon>Employee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Employee.aspx.designer.cs">
+      <DependentUpon>Employee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
