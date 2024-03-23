@@ -17,6 +17,20 @@
             <div class="row mt-5">
                 <div class="col-6 offset-3">
                     <table class="table">
+                         <tr>
+                            <th>Select Department</th>
+                            <td>
+                                <asp:DropDownList runat="server" ID="ddlDepartment" CssClass="form-control"
+                                    DataValueField="DepartmentId" DataTextField="DepartmentName">
+                                   <%--  <asp:ListItem Value="-1">Select Department</asp:ListItem>
+                                    <asp:ListItem Value="101">Admin</asp:ListItem>
+                                     <asp:ListItem Value="102">Super Admin</asp:ListItem>
+                                     <asp:ListItem Value="103">Finance & Account</asp:ListItem>
+                                     <asp:ListItem Value="104">Payroll</asp:ListItem>
+                                     <asp:ListItem Value="105">Information Technology</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
                         <tr>
                             <th>Employee Name</th>
                             <td>

@@ -14,7 +14,12 @@ namespace EmployeeManagementSystem.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Postback : when user or application subit the form to the server
+            if (!IsPostBack)
+            {
+                LoadDepartment();
+            }
+           
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -49,7 +54,8 @@ namespace EmployeeManagementSystem.Admin
                 Name = txtEmpName.Text,
                 Gender = rdbGender.SelectedValue,
                 Email = txtEmail.Text,
-                Mobile = txtMob.Text
+                Mobile = txtMob.Text,
+                DepartmentId = Convert.ToInt32(ddlDepartment.SelectedValue)
             };
 
             EmployeeRepository repository = new EmployeeRepository();
@@ -63,6 +69,29 @@ namespace EmployeeManagementSystem.Admin
                 rdbGender.ClearSelection();
             }
 
+        }
+
+        private void LoadDepartment()
+        {
+            //String CS = @"data source=ABHI\SQLEXPRESS;database=EMSDB;trusted_connection=true";
+            //SqlConnection con = new SqlConnection(CS);
+
+            //SqlCommand cmd = new SqlCommand("SELECT DepartmentId,DepartmentName FROM TDAPETMENT", con);
+
+            //con.Open();
+            //ddlDepartment.DataSource = cmd.ExecuteReader();
+            //ddlDepartment.DataBind();
+            //con.Close();
+
+
+            DepartmentRepository repository = new DepartmentRepository();
+
+            ddlDepartment.DataSource = repository.GetDepartments();
+            ddlDepartment.DataBind();
+
+            ListItem item = new ListItem() { Value = "-1", Text = "Select Department" };
+
+            ddlDepartment.Items.Insert(0, item);
         }
     }
 }

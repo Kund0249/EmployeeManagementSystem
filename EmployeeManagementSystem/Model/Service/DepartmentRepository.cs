@@ -10,6 +10,32 @@ namespace EmployeeManagementSystem.Model.Service
 {
     public class DepartmentRepository
     {
+        public List<DepartmentDTO> GetDepartments()
+        {
+            List<DepartmentDTO> departments = new List<DepartmentDTO>();
+
+            String CS = @"data source=ABHI\SQLEXPRESS;database=EMSDB;trusted_connection=true";
+            SqlConnection con = new SqlConnection(CS);
+
+            SqlCommand cmd = new SqlCommand("SELECT DepartmentId,DepartmentName FROM TDAPETMENT", con);
+
+            con.Open();
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            if (dataReader.HasRows)
+            {
+                while (dataReader.Read())
+                {
+                    departments.Add(new DepartmentDTO()
+                    {
+                        DepartmentId = Convert.ToInt32(dataReader["DepartmentId"]),
+                        DepartmentName = dataReader["DepartmentName"].ToString()
+                    }) ;
+                }
+            }
+            con.Close();
+
+            return departments;
+        }
         public string Add(DepartmentDTO department)
         {
             try

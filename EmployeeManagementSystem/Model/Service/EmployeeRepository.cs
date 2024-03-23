@@ -27,7 +27,7 @@ namespace EmployeeManagementSystem.Model.Service
                 cmd.Parameters.AddWithValue("@Gender", employee.Gender);
                 cmd.Parameters.AddWithValue("@Email", employee.Email);
                 cmd.Parameters.AddWithValue("@Mob", employee.Mobile);
-
+                cmd.Parameters.AddWithValue("@DepartmentId", employee.DepartmentId);
                 //Execute Command - 3
 
                 con.Open();
