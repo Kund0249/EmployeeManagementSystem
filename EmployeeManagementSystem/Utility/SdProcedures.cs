@@ -9,8 +9,7 @@ namespace EmployeeManagementSystem.Utility
     {
         #region "Employee"
         public static string AddEmployee = "spAddEmployee";
-        public static string RemoveEmployee = "spDeleteEmployee";
-        public static string UpdateEmployee = "spUpdateEmployee";
+        public static string GetEmployee = "spGetEmployee";
         #endregion
 
         #region "Department"

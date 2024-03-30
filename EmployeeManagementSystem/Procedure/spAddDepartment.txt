@@ -17,3 +17,12 @@ BEGIN
    END
 
 END
+
+-----------------------------------------------------------------------------------------------------
+
+Create Proc spGetEmployee
+AS
+BEGIN
+select EMP.Name,EMP.Email,EMP.Mob,ISNULL(DEP.DepartmentName,'NA') as DepartmentName from TEMPLOYEE EMP
+Left join TDAPETMENT DEP on DEP.DepartmentId = EMP.DepartmentId
+END

@@ -15,7 +15,7 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-6 offset-3">
+                <div class="col-6">
                     <table class="table">
                          <tr>
                             <th>Select Department</th>
@@ -73,6 +73,20 @@
                     <div class="mt-3">
                         <asp:Label runat="server" ID="lblMessage"></asp:Label>
                     </div>
+                </div>
+
+                <div class="col-6">
+                   <asp:GridView runat="server" ID="empGrid" CssClass="table" AutoGenerateColumns="false"
+                       ShowHeaderWhenEmpty="true"
+                       EmptyDataText="No Content!"
+                       EmptyDataRowStyle-CssClass ="text-danger text-center">
+                       <Columns>
+                           <asp:BoundField HeaderText="Name" DataField="Name"/>
+                            <asp:BoundField HeaderText="Offical Email" DataField="Email"/>
+                            <asp:BoundField HeaderText="Mobile No." DataField="Contact"/>
+                            <asp:BoundField HeaderText="Department Name" DataField="Department"/>
+                       </Columns>
+                   </asp:GridView>
                 </div>
 
             </div>

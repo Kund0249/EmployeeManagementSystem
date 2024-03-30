@@ -12,12 +12,15 @@ namespace EmployeeManagementSystem.Admin
 {
     public partial class Employee : System.Web.UI.Page
     {
+        EmployeeRepository repository = new EmployeeRepository();
         protected void Page_Load(object sender, EventArgs e)
         {
             //Postback : when user or application subit the form to the server
             if (!IsPostBack)
             {
                 LoadDepartment();
+                empGrid.DataSource = repository.GetEmployees();
+                empGrid.DataBind();
             }
            
         }
@@ -28,6 +31,7 @@ namespace EmployeeManagementSystem.Admin
             //string Gender = rdbGender.SelectedValue;
             //string Email = txtEmail.Text;
             //string Mob = txtMob.Text;
+            //int DepartmentId =  Convert.ToInt32(ddlDepartment.SelectedValue)
 
             //Prepare connection - 1
             //String CS = @"data source=ABHI\SQLEXPRESS;database=EMSDB;trusted_connection=true";
@@ -38,6 +42,7 @@ namespace EmployeeManagementSystem.Admin
             //SqlCommand cmd = new SqlCommand("spAddEmployee", con);
             //cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
+            //cmd.Parameters.AddWithValue("@DepartmentId", DepartmentId);
             //cmd.Parameters.AddWithValue("@Name", Name);
             //cmd.Parameters.AddWithValue("@Gender", Gender);
             //cmd.Parameters.AddWithValue("@Email", Email);
@@ -58,7 +63,7 @@ namespace EmployeeManagementSystem.Admin
                 DepartmentId = Convert.ToInt32(ddlDepartment.SelectedValue)
             };
 
-            EmployeeRepository repository = new EmployeeRepository();
+          
             int row = repository.Add(employee);
 
             if (row == 1)
@@ -85,8 +90,9 @@ namespace EmployeeManagementSystem.Admin
 
 
             DepartmentRepository repository = new DepartmentRepository();
+            List<DepartmentDTO> departments = repository.GetDepartments();
 
-            ddlDepartment.DataSource = repository.GetDepartments();
+            ddlDepartment.DataSource = departments;
             ddlDepartment.DataBind();
 
             ListItem item = new ListItem() { Value = "-1", Text = "Select Department" };

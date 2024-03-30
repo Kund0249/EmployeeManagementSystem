@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Model\DTO\DepartmentDTO.cs" />
     <Compile Include="Model\DTO\EmployeeDTO.cs" />
+    <Compile Include="Model\DTO\EmployeeViewDTO.cs" />
     <Compile Include="Model\Service\DepartmentRepository.cs" />
     <Compile Include="Model\Service\EmployeeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,16 +5,23 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Configuration;
 
 namespace EmployeeManagementSystem.Model.Service
 {
     public class DepartmentRepository
     {
+        String CS = string.Empty;
+        public DepartmentRepository()
+        {
+            // CS = @"data source=ABHI\SQLEXPRESS;database=EMSDB;trusted_connection=true";
+            CS = ConfigurationManager.ConnectionStrings["EMPDBCON"].ConnectionString;
+        }
         public List<DepartmentDTO> GetDepartments()
         {
             List<DepartmentDTO> departments = new List<DepartmentDTO>();
 
-            String CS = @"data source=ABHI\SQLEXPRESS;database=EMSDB;trusted_connection=true";
+           // String CS = @"data source=ABHI\SQLEXPRESS;database=EMSDB;trusted_connection=true";
             SqlConnection con = new SqlConnection(CS);
 
             SqlCommand cmd = new SqlCommand("SELECT DepartmentId,DepartmentName FROM TDAPETMENT", con);
@@ -40,7 +47,7 @@ namespace EmployeeManagementSystem.Model.Service
         {
             try
             {
-                String CS = @"data source=ABHI\SQLEXPRESS;database=EMSDB;trusted_connection=true";
+               // String CS = @"data source=ABHI\SQLEXPRESS;database=EMSDB;trusted_connection=true";
 
                 SqlConnection con = new SqlConnection(CS);
                 SqlCommand cmd = new SqlCommand(SdProcedures.AddDepartment, con);
