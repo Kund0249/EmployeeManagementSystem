@@ -1,4 +1,169 @@
-﻿Create Procedure spAddDepartment
+﻿USE [master]
+GO
+/****** Object:  Database [EMSDB]    Script Date: 3/31/2024 2:28:12 PM ******/
+CREATE DATABASE [EMSDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'EMSDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\EMSDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'EMSDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\EMSDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [EMSDB] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [EMSDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [EMSDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [EMSDB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [EMSDB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [EMSDB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [EMSDB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [EMSDB] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [EMSDB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [EMSDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [EMSDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [EMSDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [EMSDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [EMSDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [EMSDB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [EMSDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [EMSDB] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [EMSDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [EMSDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [EMSDB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [EMSDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [EMSDB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [EMSDB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [EMSDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [EMSDB] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [EMSDB] SET  MULTI_USER 
+GO
+ALTER DATABASE [EMSDB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [EMSDB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [EMSDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [EMSDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [EMSDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [EMSDB] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [EMSDB] SET QUERY_STORE = OFF
+GO
+USE [EMSDB]
+GO
+/****** Object:  Table [dbo].[TDAPETMENT]    Script Date: 3/31/2024 2:28:13 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TDAPETMENT](
+	[DepartmentId] [int] IDENTITY(101,1) NOT NULL,
+	[DepartmentCode] [varchar](6) NOT NULL,
+	[DepartmentName] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[DepartmentId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TEMPLOYEE]    Script Date: 3/31/2024 2:28:13 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TEMPLOYEE](
+	[EmpId] [int] IDENTITY(101,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Gender] [varchar](6) NOT NULL,
+	[Email] [varchar](50) NOT NULL,
+	[Mob] [varchar](10) NOT NULL,
+	[DepartmentId] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[EmpId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[TDAPETMENT] ON 
+GO
+INSERT [dbo].[TDAPETMENT] ([DepartmentId], [DepartmentCode], [DepartmentName]) VALUES (101, N'AD', N'ADMIN')
+GO
+INSERT [dbo].[TDAPETMENT] ([DepartmentId], [DepartmentCode], [DepartmentName]) VALUES (102, N'SAD', N'Super ADMIN')
+GO
+INSERT [dbo].[TDAPETMENT] ([DepartmentId], [DepartmentCode], [DepartmentName]) VALUES (103, N'FA', N'Finance & Account')
+GO
+INSERT [dbo].[TDAPETMENT] ([DepartmentId], [DepartmentCode], [DepartmentName]) VALUES (104, N'PR', N'Payroll')
+GO
+INSERT [dbo].[TDAPETMENT] ([DepartmentId], [DepartmentCode], [DepartmentName]) VALUES (105, N'IT', N'Information Technology')
+GO
+INSERT [dbo].[TDAPETMENT] ([DepartmentId], [DepartmentCode], [DepartmentName]) VALUES (106, N'BRMG', N'Brokerage Management')
+GO
+SET IDENTITY_INSERT [dbo].[TDAPETMENT] OFF
+GO
+SET IDENTITY_INSERT [dbo].[TEMPLOYEE] ON 
+GO
+INSERT [dbo].[TEMPLOYEE] ([EmpId], [Name], [Gender], [Email], [Mob], [DepartmentId]) VALUES (101, N'Ajay Sharma', N'M', N'ajay@gmail.com', N'7689564323', 101)
+GO
+INSERT [dbo].[TEMPLOYEE] ([EmpId], [Name], [Gender], [Email], [Mob], [DepartmentId]) VALUES (103, N'Abhishek', N'M', N'abhi@gmail.com', N'7798674564', 102)
+GO
+INSERT [dbo].[TEMPLOYEE] ([EmpId], [Name], [Gender], [Email], [Mob], [DepartmentId]) VALUES (104, N'Namita', N'F', N'namita@gmail.com', N'7689564323', 104)
+GO
+INSERT [dbo].[TEMPLOYEE] ([EmpId], [Name], [Gender], [Email], [Mob], [DepartmentId]) VALUES (105, N'Nisha Sharma', N'F', N'ns@gmail.com', N'7689564323', 106)
+GO
+INSERT [dbo].[TEMPLOYEE] ([EmpId], [Name], [Gender], [Email], [Mob], [DepartmentId]) VALUES (106, N'AJay Yadav', N'M', N'aj@gmail.com', N'7689564221', 105)
+GO
+INSERT [dbo].[TEMPLOYEE] ([EmpId], [Name], [Gender], [Email], [Mob], [DepartmentId]) VALUES (113, N'Vinay Dubey', N'M', N'vinay@gmail.com', N'7689564323', 103)
+GO
+SET IDENTITY_INSERT [dbo].[TEMPLOYEE] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__TEMPLOYE__A9D10534D37449C7]    Script Date: 3/31/2024 2:28:13 PM ******/
+ALTER TABLE [dbo].[TEMPLOYEE] ADD UNIQUE NONCLUSTERED 
+(
+	[Email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[TEMPLOYEE]  WITH CHECK ADD  CONSTRAINT [FK_TEMPLOYEE_TDAPETMENT] FOREIGN KEY([DepartmentId])
+REFERENCES [dbo].[TDAPETMENT] ([DepartmentId])
+GO
+ALTER TABLE [dbo].[TEMPLOYEE] CHECK CONSTRAINT [FK_TEMPLOYEE_TDAPETMENT]
+GO
+/****** Object:  StoredProcedure [dbo].[spAddDepartment]    Script Date: 3/31/2024 2:28:13 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create Procedure [dbo].[spAddDepartment]
 @departmentCode varchar(6),
 @departmentName varchar(50)
 AS
@@ -17,12 +182,85 @@ BEGIN
    END
 
 END
-
------------------------------------------------------------------------------------------------------
-
-Create Proc spGetEmployee
+GO
+/****** Object:  StoredProcedure [dbo].[spAddEmployee]    Script Date: 3/31/2024 2:28:13 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[spAddEmployee]
+@Name varchar(50),
+@Gender varchar(6),
+@Email varchar(50),
+@Mob varchar(10),
+@DepartmentId int
 AS
 BEGIN
-select EMP.Name,EMP.Email,EMP.Mob,ISNULL(DEP.DepartmentName,'NA') as DepartmentName from TEMPLOYEE EMP
-Left join TDAPETMENT DEP on DEP.DepartmentId = EMP.DepartmentId
+  INSERT into TEMPLOYEE (Name,Gender,Mob,Email,DepartmentId) Values(@Name,@Gender,@Mob,@Email,@DepartmentId)
 END
+GO
+/****** Object:  StoredProcedure [dbo].[spDeleteEmployeeById]    Script Date: 3/31/2024 2:28:13 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create Proc [dbo].[spDeleteEmployeeById] 
+@empId int
+AS
+BEGIN
+delete from TEMPLOYEE where EmpId = @empId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spGetEmployee]    Script Date: 3/31/2024 2:28:13 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE Proc [dbo].[spGetEmployee]
+@EmpId int = 0
+AS
+BEGIN
+select EMP.EmpId,EMP.Name,EMP.Email,EMP.Mob,ISNULL(DEP.DepartmentName,'NA') as DepartmentName from TEMPLOYEE EMP
+Left join TDAPETMENT DEP on DEP.DepartmentId = EMP.DepartmentId
+where (@EmpId = 0 or EMP.EmpId = @EmpId)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[spGetEmployeeById]    Script Date: 3/31/2024 2:28:13 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create Proc [dbo].[spGetEmployeeById]
+@empId int
+AS
+BEGIN
+select EMP.* from TEMPLOYEE EMP where EMP.EmpId = @empId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spUpdateEmployee]    Script Date: 3/31/2024 2:28:13 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create procedure [dbo].[spUpdateEmployee]
+@EmpId int,
+@Name varchar(50),
+@Gender varchar(6),
+@Email varchar(50),
+@Mob varchar(10),
+@DepartmentId int
+AS
+BEGIN
+  Update TEMPLOYEE set 
+  Name = @Name,Gender= @Gender,Email=@Email,Mob=@Mob,DepartmentId=@DepartmentId
+  Where EmpId = @EmpId
+END
+GO
+USE [master]
+GO
+ALTER DATABASE [EMSDB] SET  READ_WRITE 
+GO
