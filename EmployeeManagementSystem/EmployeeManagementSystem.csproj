@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Admin\Department.aspx" />
     <Content Include="Admin\Employee.aspx" />
+    <Content Include="Admin\Test.aspx" />
     <Content Include="Content\AppResource\delete.png" />
     <Content Include="Content\AppResource\edit.png" />
     <Content Include="Content\AppResource\Save.png" />
@@ -92,6 +93,20 @@
     <Compile Include="Admin\Employee.aspx.designer.cs">
       <DependentUpon>Employee.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterLayouts\EMS_Layout.Master.cs">
+      <DependentUpon>EMS_Layout.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterLayouts\EMS_Layout.Master.designer.cs">
+      <DependentUpon>EMS_Layout.Master</DependentUpon>
+    </Compile>
     <Compile Include="Model\DTO\DepartmentDTO.cs" />
     <Compile Include="Model\DTO\EmployeeDTO.cs" />
     <Compile Include="Model\DTO\EmployeeViewDTO.cs" />
@@ -102,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libman.json" />
+    <Content Include="MasterLayouts\EMS_Layout.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
