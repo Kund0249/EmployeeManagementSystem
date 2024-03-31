@@ -10,6 +10,9 @@ namespace EmployeeManagementSystem.Utility
         #region "Employee"
         public static string AddEmployee = "spAddEmployee";
         public static string GetEmployee = "spGetEmployee";
+        public static string GetEmployeeById = "spGetEmployeeById";
+        public static string UpdateEmployee = "spUpdateEmployee";
+        public static string DeleteEmployee = "spDeleteEmployeeById";
         #endregion
 
         #region "Department"

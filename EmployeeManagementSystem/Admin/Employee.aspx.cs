@@ -56,6 +56,7 @@ namespace EmployeeManagementSystem.Admin
 
             EmployeeDTO employee = new EmployeeDTO()
             {
+                EmpId = (hdfEmpId.Value != ""? Convert.ToInt32(hdfEmpId.Value):0),
                 Name = txtEmpName.Text,
                 Gender = rdbGender.SelectedValue,
                 Email = txtEmail.Text,
@@ -63,15 +64,23 @@ namespace EmployeeManagementSystem.Admin
                 DepartmentId = Convert.ToInt32(ddlDepartment.SelectedValue)
             };
 
-          
-            int row = repository.Add(employee);
+            int row = 0;
+            if (employee.EmpId != 0)
+                row = repository.Update(employee);
+            else
+                row = repository.Add(employee);
 
             if (row == 1)
             {
+                hdfEmpId.Value = string.Empty;
                 txtEmpName.Text = string.Empty;
                 txtEmail.Text = string.Empty;
                 txtMob.Text = string.Empty;
                 rdbGender.ClearSelection();
+                ddlDepartment.ClearSelection();
+
+                empGrid.DataSource = repository.GetEmployees();
+                empGrid.DataBind();
             }
 
         }
@@ -98,6 +107,53 @@ namespace EmployeeManagementSystem.Admin
             ListItem item = new ListItem() { Value = "-1", Text = "Select Department" };
 
             ddlDepartment.Items.Insert(0, item);
+        }
+
+        protected void empGrid_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var id = Convert.ToInt32(empGrid.DataKeys[empGrid.SelectedIndex].Value);
+            EmployeeDTO employee = repository.GetEmployee(id);
+
+            if(employee != null)
+            {
+                hdfEmpId.Value = employee.EmpId.ToString();
+                txtEmpName.Text = employee.Name;
+                txtEmail.Text = employee.Email;
+                txtMob.Text = employee.Mobile;
+                rdbGender.SelectedValue = employee.Gender;
+                ddlDepartment.SelectedValue = employee.DepartmentId.ToString();
+            }
+        }
+
+        protected void empGrid_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int Id = Convert.ToInt32(empGrid.DataKeys[e.RowIndex].Value);
+            repository.Remove(Id);
+
+            empGrid.DataSource = repository.GetEmployees();
+            empGrid.DataBind();
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int Id = Convert.ToInt32(txtSearch.Text);
+                empGrid.DataSource = repository.GetEmployees(Id);
+                empGrid.DataBind();
+            }
+            catch (Exception)
+            {
+
+               
+            }
+        }
+
+        protected void btnClearFilter_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            empGrid.DataSource = repository.GetEmployees();
+            empGrid.DataBind();
         }
     }
 }
