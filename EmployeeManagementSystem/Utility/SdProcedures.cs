@@ -18,5 +18,9 @@ namespace EmployeeManagementSystem.Utility
         #region "Department"
         public static string AddDepartment = "spAddDepartment";
         #endregion
+
+        #region "Application User"
+        public static string ValidateUser = "spValidateUser";
+        #endregion
     }
 }

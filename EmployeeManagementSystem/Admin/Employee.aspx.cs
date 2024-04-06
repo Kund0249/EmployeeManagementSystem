@@ -65,24 +65,44 @@ namespace EmployeeManagementSystem.Admin
             };
 
             int row = 0;
+            string ErrorMessage = string.Empty;
             if (employee.EmpId != 0)
-                row = repository.Update(employee);
+                row = repository.Update(employee,out ErrorMessage);
             else
                 row = repository.Add(employee);
 
             if (row == 1)
             {
-                hdfEmpId.Value = string.Empty;
-                txtEmpName.Text = string.Empty;
-                txtEmail.Text = string.Empty;
-                txtMob.Text = string.Empty;
-                rdbGender.ClearSelection();
-                ddlDepartment.ClearSelection();
-
+                ClearFormControls();
                 empGrid.DataSource = repository.GetEmployees();
                 empGrid.DataBind();
+
+                string AlertMessage = "toastr['success']('record save successfully.', 'Success')";
+                //ClientScript.RegisterClientScriptBlock(this.GetType(), "S001", "alert('record save successfully.')",true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "S001", AlertMessage, true);
+            }
+            else
+            {
+                if(ErrorMessage != "")
+                {
+                    // ErrorMessage = ErrorMessage.Replace('"',' ').Replace("'", "");
+                    ErrorMessage = "This is error message";
+                    string AlertMessage = @"toastr['error']('"+ErrorMessage+".', 'Error')";
+                    //ClientScript.RegisterClientScriptBlock(this.GetType(), "S001", "alert('record save successfully.')",true);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "E001", AlertMessage, true);
+                }
             }
 
+        }
+
+        private void ClearFormControls()
+        {
+            hdfEmpId.Value = string.Empty;
+            txtEmpName.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtMob.Text = string.Empty;
+            rdbGender.ClearSelection();
+            ddlDepartment.ClearSelection();
         }
 
         private void LoadDepartment()
@@ -154,6 +174,11 @@ namespace EmployeeManagementSystem.Admin
             txtSearch.Text = string.Empty;
             empGrid.DataSource = repository.GetEmployees();
             empGrid.DataBind();
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            ClearFormControls();
         }
     }
 }

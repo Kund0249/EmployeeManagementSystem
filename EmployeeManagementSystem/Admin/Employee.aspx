@@ -2,10 +2,21 @@
     CodeBehind="Employee.aspx.cs" Inherits="EmployeeManagementSystem.Admin.Employee"
     MasterPageFile="~/MasterLayouts/EMS_Layout.Master" %>
 
+<asp:Content runat="server" ContentPlaceHolderID="headsection">
+<%--<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>--%>
 
+<%--<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+             $('#contentPage_empGrid').dataTable();
+        });
+    </script>--%>
+</asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="contentPage">
 
-   <%-- <div class="row bg-info">
+    <%-- <div class="row bg-info">
         <h2 class="text-center text-light">Add New Employee</h2>
     </div>--%>
     <h2>Employee</h2>
@@ -58,7 +69,8 @@
                 <tr>
                     <td>
                         <asp:Button runat="server" ID="btnReset" Text="Reset Form"
-                            CssClass="btn btn-light" />
+                            CssClass="btn btn-light"
+                            OnClick="btnReset_Click" />
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnSubmit" Text="Submit"
@@ -73,47 +85,47 @@
         </div>
 
     </div>
-
+    <hr />
     <div class="row">
-            <div class="row">
-                <div class="col-8">
-                    <asp:TextBox runat="server" ID="txtSearch" CssClass="form-control"
-                        placeholder="Search employee by employee id."></asp:TextBox>
-                </div>
-                <div class="col-4">
-                    <asp:Button runat="server" ID="btnSearch" Text="Search" CssClass="btn btn-primary"
-                        OnClick="btnSearch_Click" />
-
-                    <asp:Button runat="server" ID="btnClearFilter" Text="Clear Filter" CssClass="btn btn-secondary"
-                        OnClick="btnClearFilter_Click" />
-                </div>
+        <div class="row">
+            <div class="col-8">
+                <asp:TextBox runat="server" ID="txtSearch" CssClass="form-control"
+                    placeholder="Search employee by employee id."></asp:TextBox>
             </div>
-            <div class="row mt-3">
-                <asp:GridView runat="server" ID="empGrid" CssClass="table" AutoGenerateColumns="false"
-                    ShowHeaderWhenEmpty="true"
-                    EmptyDataText="No Content!"
-                    EmptyDataRowStyle-CssClass="text-danger text-center"
-                    DataKeyNames="Id"
-                    OnSelectedIndexChanged="empGrid_SelectedIndexChanged"
-                    OnRowDeleting="empGrid_RowDeleting">
+            <div class="col-4">
+                <asp:Button runat="server" ID="btnSearch" Text="Search" CssClass="btn btn-primary"
+                    OnClick="btnSearch_Click" />
 
-                    <Columns>
-                        <asp:BoundField HeaderText="Name" DataField="Name" />
-                        <asp:BoundField HeaderText="Offical Email" DataField="Email" />
-                        <asp:BoundField HeaderText="Mobile No." DataField="Contact" />
-                        <asp:BoundField HeaderText="Department Name" DataField="Department" />
-                        <asp:CommandField HeaderText="Action"
-                            ButtonType="Image"
-                            ShowDeleteButton="true"
-                            DeleteImageUrl="~/Content/AppResource/delete.png"
-                            ShowSelectButton="true"
-                            SelectImageUrl="~/Content/AppResource/edit.png"
-                            ControlStyle-Height="30"
-                            ControlStyle-Width="30" />
-                    </Columns>
-
-                </asp:GridView>
+                <asp:Button runat="server" ID="btnClearFilter" Text="Clear Filter" CssClass="btn btn-secondary"
+                    OnClick="btnClearFilter_Click" />
             </div>
+        </div>
+        <div class="row mt-3">
+            <asp:GridView runat="server" ID="empGrid" CssClass="table" AutoGenerateColumns="false"
+                ShowHeaderWhenEmpty="true"
+                EmptyDataText="No Content!"
+                EmptyDataRowStyle-CssClass="text-danger text-center"
+                DataKeyNames="Id"
+                OnSelectedIndexChanged="empGrid_SelectedIndexChanged"
+                OnRowDeleting="empGrid_RowDeleting">
+
+                <Columns>
+                    <asp:BoundField HeaderText="Name" DataField="Name" />
+                    <asp:BoundField HeaderText="Offical Email" DataField="Email" />
+                    <asp:BoundField HeaderText="Mobile No." DataField="Contact" />
+                    <asp:BoundField HeaderText="Department Name" DataField="Department" />
+                    <asp:CommandField HeaderText="Action"
+                        ButtonType="Image"
+                        ShowDeleteButton="true"
+                        DeleteImageUrl="~/Content/AppResource/delete.png"
+                        ShowSelectButton="true"
+                        SelectImageUrl="~/Content/AppResource/edit.png"
+                        ControlStyle-Height="30"
+                        ControlStyle-Width="30" />
+                </Columns>
+
+            </asp:GridView>
+        </div>
     </div>
 
 </asp:Content>

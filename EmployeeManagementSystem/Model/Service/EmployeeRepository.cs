@@ -136,10 +136,11 @@ namespace EmployeeManagementSystem.Model.Service
             }
         }
 
-        public int Update(EmployeeDTO employee)
+        public int Update(EmployeeDTO employee,out string ErrorMessage)
         {
             try
             {
+                ErrorMessage = string.Empty;
                 //Prepare connection - 1
                 // String CS = @"data source=ABHI\SQLEXPRESS;database=EMSDB;trusted_connection=true";
 
@@ -166,6 +167,7 @@ namespace EmployeeManagementSystem.Model.Service
             }
             catch (Exception ex)
             {
+                ErrorMessage = ex.Message;
                 return 0;
             }
         }

@@ -6,6 +6,14 @@
 <head runat="server">
     <title></title>
     <link href="../Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/toastr/toastr.css" rel="stylesheet" />
+
+    <script src="../Content/jquery/jquery.js"></script>
+    <script src="../Content/toastr/toastr.min.js"></script>
+
+    <asp:ContentPlaceHolder runat="server" ID="headsection">
+
+    </asp:ContentPlaceHolder>
     <style>
         .Main-Content {
             width: 100%;
@@ -49,7 +57,7 @@
 
         <div class="container-fluid">
             <div class="row Main-Content">
-                <div class="col-2 notice-board">
+               <%-- <div class="col-2 notice-board">
                     <h3>Notice Board</h3>
                     <ul>
                         <%
@@ -61,8 +69,8 @@
                             }
                         %>
                     </ul>
-                </div>
-                <div class="col-10 content-page">
+                </div>--%>
+                <div class="col-12">
                     <asp:ContentPlaceHolder runat="server" ID="contentPage"></asp:ContentPlaceHolder>
                 </div>
               <%--  <div class="col-2 notice-board">

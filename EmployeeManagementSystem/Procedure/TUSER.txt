@@ -1,0 +1,32 @@
+﻿USE [EMSDB]
+GO
+
+CREATE TABLE [dbo].[TUSER](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [varchar](50) NULL,
+	[Password] [varchar](50) NULL,
+	[Mobile] [varchar](50) NULL,
+ CONSTRAINT [PK_TUSER] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+create proc spValidateUser
+@UserId varchar(50),
+@Password varchar(50)
+AS
+BEGIN
+  IF Exists(select 1 from TUSER where UserId = @UserId and Password = @Password)
+   BEGIN
+      select 1 as IsValid
+	  return 
+   END
+   ELSE
+    BEGIN
+	   select 0 as IsValid
+	  return 
+	END
+END

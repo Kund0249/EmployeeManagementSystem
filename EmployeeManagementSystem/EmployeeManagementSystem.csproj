@@ -70,12 +70,19 @@
     <Content Include="Admin\Department.aspx" />
     <Content Include="Admin\Employee.aspx" />
     <Content Include="Admin\Test.aspx" />
+    <Content Include="AppMember\Login.aspx" />
+    <Content Include="AppMember\Register.aspx" />
     <Content Include="Content\AppResource\delete.png" />
     <Content Include="Content\AppResource\edit.png" />
     <Content Include="Content\AppResource\Save.png" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\Site.css" />
+    <Content Include="Content\jquery\jquery.js" />
+    <Content Include="Content\toastr\toastr.css" />
+    <Content Include="Content\toastr\toastr.min.js" />
+    <Content Include="Home.aspx" />
     <Content Include="Procedure\spAddDepartment.txt" />
+    <Content Include="Procedure\TUSER.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +107,27 @@
     <Compile Include="Admin\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AppMember\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppMember\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AppMember\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppMember\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterLayouts\EMS_Layout.Master.cs">
       <DependentUpon>EMS_Layout.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -112,12 +140,14 @@
     <Compile Include="Model\DTO\EmployeeViewDTO.cs" />
     <Compile Include="Model\Service\DepartmentRepository.cs" />
     <Compile Include="Model\Service\EmployeeRepository.cs" />
+    <Compile Include="Model\Service\LoginManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\SdProcedures.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="libman.json" />
     <Content Include="MasterLayouts\EMS_Layout.Master" />
+    <Content Include="Admin\Web.config" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -127,7 +157,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Account\" />
     <Folder Include="EmployeePages\" />
   </ItemGroup>
   <PropertyGroup>
