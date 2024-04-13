@@ -54,6 +54,19 @@ namespace EmployeeManagementSystem.Admin
             //int row = cmd.ExecuteNonQuery();
             //con.Close();
 
+            string FolderName = "~/ProfileImages";
+
+            if(ImageFile.PostedFile != null)
+            {
+               // string UploadedFileName = ImageFile.PostedFile.FileName;
+                //string _guidId = Guid.NewGuid().ToString();
+                string FileName = Guid.NewGuid().ToString() + "_" + ImageFile.PostedFile.FileName;
+                string folderPath = Server.MapPath(FolderName);
+                //c:/user/repo/EMS/EMS/ProfileImage/vdgvwehfhebghjbjfwjhyt32thdsbh_Abhi.jpg
+                string filePath = System.IO.Path.Combine(folderPath, FileName);
+                ImageFile.PostedFile.SaveAs(filePath);
+            }
+
             EmployeeDTO employee = new EmployeeDTO()
             {
                 EmpId = (hdfEmpId.Value != ""? Convert.ToInt32(hdfEmpId.Value):0),

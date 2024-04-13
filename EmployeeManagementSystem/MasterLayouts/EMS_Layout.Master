@@ -12,7 +12,6 @@
     <script src="../Content/toastr/toastr.min.js"></script>
 
     <asp:ContentPlaceHolder runat="server" ID="headsection">
-
     </asp:ContentPlaceHolder>
     <style>
         .Main-Content {
@@ -20,8 +19,8 @@
             height: 580px;
         }
 
-        .content-page{
-            height:575px;
+        .content-page {
+            height: 575px;
             overflow: auto;
             margin-top: 5px;
         }
@@ -36,28 +35,79 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+            <!-- Container wrapper -->
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">EMS</a>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                <!-- Toggle button -->
+                <button
+                    data-mdb-collapse-init
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Navbar brand -->
+                    <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                        <img
+                            src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+                            height="15"
+                            alt="MDB Logo"
+                            loading="lazy" />
+                    </a>
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                           <asp:HyperLink runat="server" NavigateUrl="~/Admin/Employee.aspx"
-                               CssClass="nav-link">Employee</asp:HyperLink>
+                            <asp:HyperLink runat="server" NavigateUrl="~/Admin/Employee.aspx"
+                                CssClass="nav-link">Employee</asp:HyperLink>
                         </li>
                         <li class="nav-item">
                             <asp:HyperLink runat="server" NavigateUrl="~/Admin/Department.aspx"
                                 CssClass="nav-link">Department</asp:HyperLink>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Projects</a>
+                        </li>
                     </ul>
+                    <!-- Left links -->
+                </div>
+                <!-- Collapsible wrapper -->
+
+                <!-- Right elements -->
+                <div class="d-flex align-items-center">
+
+                    <%
+                        if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            Response.Write(Session["UserEmail"] + "&nbsp; &nbsp; &nbsp;");
+                            Response.Write("Welcome - ");
+                    %>
+
+                        <asp:LoginName runat="server" CssClass="nav-link" />
+
+                    <% 
+                        }
+                    %>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+        <asp:LoginStatus runat="server" LogoutAction="RedirectToLoginPage" CssClass="nav-link" />
+
                 </div>
             </div>
         </nav>
+        <!-- Navbar -->
+
 
         <div class="container-fluid">
             <div class="row Main-Content">
-               <%-- <div class="col-2 notice-board">
+                <%-- <div class="col-2 notice-board">
                     <h3>Notice Board</h3>
                     <ul>
                         <%
@@ -73,7 +123,7 @@
                 <div class="col-12">
                     <asp:ContentPlaceHolder runat="server" ID="contentPage"></asp:ContentPlaceHolder>
                 </div>
-              <%--  <div class="col-2 notice-board">
+                <%--  <div class="col-2 notice-board">
                     <h3>Deal of the day.</h3>
                 </div>--%>
             </div>

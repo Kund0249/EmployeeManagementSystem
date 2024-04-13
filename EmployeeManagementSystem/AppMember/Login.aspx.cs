@@ -14,7 +14,7 @@ namespace EmployeeManagementSystem.AppMember
         private readonly LoginManager loginManager;
         public Login()
         {
-            loginManager = new LoginManager();
+            loginManager = new LoginManager();  
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,6 +43,8 @@ namespace EmployeeManagementSystem.AppMember
             if (loginManager.IsValidUser(UserId,Password))
             {
                 FormsAuthentication.RedirectFromLoginPage(UserId, false);
+                Session["UserEmail"] = "xyz@gmail.com";
+                
             }
             else
             {

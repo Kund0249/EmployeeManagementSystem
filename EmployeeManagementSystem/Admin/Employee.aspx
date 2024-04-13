@@ -3,9 +3,9 @@
     MasterPageFile="~/MasterLayouts/EMS_Layout.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="headsection">
-<%--<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>--%>
+    <%--<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>--%>
 
-<%--<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    <%--<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
 
     <script type="text/javascript">
@@ -26,6 +26,12 @@
             <asp:HiddenField runat="server" ID="hdfEmpId" />
             <table class="table">
                 <tr>
+                    <th>Profile Image</th>
+                    <td>
+                        <asp:FileUpload runat="server" ID="ImageFile" CssClass="form-control" />
+                    </td>
+                </tr>
+                <tr>
                     <th>Select Department</th>
                     <td>
                         <asp:DropDownList runat="server" ID="ddlDepartment" CssClass="form-control"
@@ -37,12 +43,37 @@
                                      <asp:ListItem Value="104">Payroll</asp:ListItem>
                                      <asp:ListItem Value="105">Information Technology</asp:ListItem>--%>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator runat="server"
+                            ControlToValidate="ddlDepartment"
+                            ErrorMessage="Please select department."
+                            ForeColor="Red"
+                            Display="Dynamic"
+                            InitialValue="-1"
+                            SetFocusOnError="true"
+                            ValidationGroup="EmpValidationGrp">
+                        </asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <th>Employee Name</th>
                     <td>
                         <asp:TextBox runat="server" ID="txtEmpName" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server"
+                            ControlToValidate="txtEmpName"
+                            ErrorMessage="Please enter name."
+                            ForeColor="Red"
+                            Display="Dynamic"
+                            SetFocusOnError="true"
+                            ValidationGroup="EmpValidationGrp">
+                        </asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator runat="server"
+                            ControlToValidate="txtEmpName"
+                            ErrorMessage="Only alphabets are allowed."
+                            ValidationExpression="[a-zA-Z\s]*"
+                            ForeColor="Red"
+                            Display="Dynamic"
+                            ValidationGroup="EmpValidationGrp">
+                        </asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -52,29 +83,118 @@
                             <asp:ListItem Value="M">Male</asp:ListItem>
                             <asp:ListItem Value="F">Female</asp:ListItem>
                         </asp:RadioButtonList>
+                        <asp:RequiredFieldValidator runat="server"
+                            ControlToValidate="rdbGender"
+                            ErrorMessage="Please select gender."
+                            ForeColor="Red"
+                            Display="Dynamic"
+                            ValidationGroup="EmpValidationGrp">
+                        </asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <th>Employee Email</th>
                     <td>
                         <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server"
+                            ControlToValidate="txtEmail"
+                            ErrorMessage="Please enter email address."
+                            ForeColor="Red"
+                            Display="Dynamic"
+                            ValidationGroup="EmpValidationGrp">
+                        </asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator runat="server"
+                            ControlToValidate="txtEmail"
+                            ErrorMessage="please enter a valid email address."
+                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                            ForeColor="Red"
+                            Display="Dynamic"
+                            ValidationGroup="EmpValidationGrp"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
                     <th>Employee Contact</th>
                     <td>
                         <asp:TextBox runat="server" ID="txtMob" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server"
+                            ControlToValidate="txtMob"
+                            ErrorMessage="Please enter contact number."
+                            ForeColor="Red"
+                            Display="Dynamic"
+                            ValidationGroup="EmpValidationGrp">
+                        </asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator runat="server"
+                            ControlToValidate="txtMob"
+                            ErrorMessage="please enter a valid  contact number."
+                            ValidationExpression="[6-9]{1}[0-9]{9}"
+                            ForeColor="Red"
+                            Display="Dynamic"
+                            ValidationGroup="EmpValidationGrp"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
+
+                <tr>
+                    <th>Salary</th>
+                    <td>
+                        <asp:TextBox runat="server" ID="txtSalary" CssClass="form-control"></asp:TextBox>
+                        <asp:RangeValidator runat="server"
+                             ControlToValidate="txtSalary"
+                            ErrorMessage="please enter a salary between 10000 and 100000."
+                            Type="Integer"
+                            MinimumValue="10000"
+                            MaximumValue="100000"
+                            ForeColor="Red"
+                            Display="Dynamic">
+
+                        </asp:RangeValidator>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Employee Salary Ac No.</th>
+                    <td>
+                        <asp:TextBox runat="server" ID="txtSalaryAccount" CssClass="form-control"
+                            TextMode="Password"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server"
+                            ControlToValidate="txtSalaryAccount"
+                            ErrorMessage="Please enter account number."
+                            ForeColor="Red"
+                            Display="Dynamic">
+                        </asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Reenter Salary Ac No.</th>
+                    <td>
+                        <asp:TextBox runat="server" ID="txtReSalaryAccount" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server"
+                            ControlToValidate="txtReSalaryAccount"
+                            ErrorMessage="Please enter account number."
+                            ForeColor="Red"
+                            Display="Dynamic">
+                        </asp:RequiredFieldValidator>
+                        <asp:CompareValidator runat="server"
+                            ControlToValidate="txtReSalaryAccount"
+                            ControlToCompare="txtSalaryAccount"
+                            ErrorMessage="account number does not matches."
+                            ForeColor="Red"
+                            Display="Dynamic">
+                        </asp:CompareValidator>
+                    </td>
+                </tr>
+
                 <tr>
                     <td>
                         <asp:Button runat="server" ID="btnReset" Text="Reset Form"
                             CssClass="btn btn-light"
-                            OnClick="btnReset_Click" />
+                            OnClick="btnReset_Click" 
+                            CausesValidation="false"/>
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnSubmit" Text="Submit"
-                            CssClass="btn btn-success" OnClick="btnSubmit_Click" />
+                            CssClass="btn btn-success" OnClick="btnSubmit_Click" 
+                            ValidationGroup="EmpValidationGrp"/>
                     </td>
                 </tr>
             </table>
@@ -110,7 +230,15 @@
                 OnRowDeleting="empGrid_RowDeleting">
 
                 <Columns>
-                    <asp:BoundField HeaderText="Name" DataField="Name" />
+                    <%--<asp:BoundField HeaderText="Name" DataField="Name" />--%>
+                    <asp:TemplateField HeaderText="Name">
+                        <ItemTemplate>
+                            <asp:HyperLink runat="server" 
+                                NavigateUrl='<%# string.Format("~/Admin/EmployeeDetail.aspx?id={0}",Eval("Id")) %>'>
+                                <asp:Label runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                            </asp:HyperLink>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField HeaderText="Offical Email" DataField="Email" />
                     <asp:BoundField HeaderText="Mobile No." DataField="Contact" />
                     <asp:BoundField HeaderText="Department Name" DataField="Department" />

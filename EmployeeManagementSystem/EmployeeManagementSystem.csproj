@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Admin\Department.aspx" />
     <Content Include="Admin\Employee.aspx" />
+    <Content Include="Admin\EmployeeDetail.aspx" />
     <Content Include="Admin\Test.aspx" />
     <Content Include="AppMember\Login.aspx" />
     <Content Include="AppMember\Register.aspx" />
@@ -99,6 +100,13 @@
     </Compile>
     <Compile Include="Admin\Employee.aspx.designer.cs">
       <DependentUpon>Employee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EmployeeDetail.aspx.cs">
+      <DependentUpon>EmployeeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EmployeeDetail.aspx.designer.cs">
+      <DependentUpon>EmployeeDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
@@ -158,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EmployeePages\" />
+    <Folder Include="ProfileImages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

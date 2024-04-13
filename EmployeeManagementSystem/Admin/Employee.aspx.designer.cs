@@ -24,6 +24,15 @@ namespace EmployeeManagementSystem.Admin
         protected global::System.Web.UI.WebControls.HiddenField hdfEmpId;
 
         /// <summary>
+        /// ImageFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ImageFile;
+
+        /// <summary>
         /// ddlDepartment control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,33 @@ namespace EmployeeManagementSystem.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMob;
+
+        /// <summary>
+        /// txtSalary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSalary;
+
+        /// <summary>
+        /// txtSalaryAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSalaryAccount;
+
+        /// <summary>
+        /// txtReSalaryAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReSalaryAccount;
 
         /// <summary>
         /// btnReset control.
